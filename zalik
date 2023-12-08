@@ -1,0 +1,18 @@
+file_path = "Book.txt"
+Word_we_going_to_found = input("Type word to find: ")
+
+try:
+    with open(file_path, 'r', encoding='utf-8') as file:
+        paragraphs = file.read().split('\n\n')
+        word_found = False
+        for i, paragraph in enumerate(paragraphs, 1):
+            words = paragraph.lower().split() 
+            if Word_we_going_to_found.lower() in words:
+                print(f"Paragraph {i}:\n{paragraph}\n{'=' * 30}")
+                word_found = True
+        if not word_found:
+            print(f"Word '{Word_we_going_to_found}' not find in text")
+except FileNotFoundError:
+    print(f"File {file_path} not found")
+except Exception as error:
+    print(f"Error: {error}")
